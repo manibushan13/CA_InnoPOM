@@ -20,7 +20,7 @@ public class Listener implements  ISuiteListener,ITestListener {
 		try {
 //			logApp.logIntilize();
 			Common.Clean_Automation_Environment();
-			MailTrigger.startmail();
+//			MailTrigger.startmail();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
