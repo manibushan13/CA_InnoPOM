@@ -1,6 +1,6 @@
 <TestData xmlns="Sample_Test" description="Sample_Test">
   <DataSet name="InputData">
-    <Add key="username" value="hostautomation@gmail.com" />
+    <Add key="username" value="automations86@gmail.com" />
     <Add key="password" value="automation123" />
     <Add key="LoadType" value="Copy - Paste" />
     <Add key="LoadItem" value="Data" />

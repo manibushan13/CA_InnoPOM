@@ -16,7 +16,7 @@ public class logApp {
 	
 	public static void logIntilize() throws Exception {
 		DOMConfigurator.configure(System.getProperty("user.dir")+"/src/log4j.xml");
-		logger.info("log4j Intialised22 Successfully.");
+		logger.info("log4j Intialised Successfully.");
 
 	}
 
