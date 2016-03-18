@@ -1,4 +1,4 @@
-package HA.Utilities;
+package SA.Utilities;
 
 
 import java.io.BufferedWriter;
@@ -25,7 +25,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import HA.Properties.logApp;
+import SA.Properties.logApp;
 
 public class Util {
 	

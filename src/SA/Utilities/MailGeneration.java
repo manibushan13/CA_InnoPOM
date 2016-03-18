@@ -1,4 +1,4 @@
-package HA.Utilities;
+package SA.Utilities;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,8 +12,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.testng.ITestResult;
 
-import HA.Properties.HATF_properties;
-import HA.Properties.logApp;
+import SA.Properties.HATF_properties;
+import SA.Properties.logApp;
 
 public class MailGeneration {
 
@@ -85,8 +85,8 @@ public class MailGeneration {
 			htmlContent= parseHTMLfile(filePath).replace("#Browser#", _properties.getProperty("BROWSER") );
 			fillCommonDetails();
 			//			System.out.println("Module Name:"+HTMLPreparation.module);
-			String module=GenerateHTML.getTCdetails(0).get(4).split("HA.TestExecute.")[0]+" "+ _properties.getProperty("BROWSER");
-			//           String ModuleName=generateHTMLReport.getTCdetails(0).get(4).split("HA.TestExecute.")[1].split("\\.")[0];
+			String module=GenerateHTML.getTCdetails(0).get(4).split("SA.TestExecute.")[0]+" "+ _properties.getProperty("BROWSER");
+			//           String ModuleName=generateHTMLReport.getTCdetails(0).get(4).split("SA.TestExecute.")[1].split("\\.")[0];
 
 			htmlContent=htmlContent.replace( "#HorizonStatus#","");
 			MailTrigger.subject+=": "+module+" Module Results"+MailBody.generateExecutionHTML();;
@@ -101,7 +101,7 @@ public class MailGeneration {
 			htmlContent= parseHTMLfile(filePath);
 			fillCommonDetails();
 			String testDetails = test.getTestClass().toString();
-			String testName=testDetails.split("HA.TestExecute.")[1];
+			String testName=testDetails.split("SA.TestExecute.")[1];
 			String Module= testName.split("\\.")[0];
 			String testScriptName =(testName.split("\\.")[1]).split("]")[0];
 			String testDuration = MilliSecondsToMinutes(test.getStartMillis()-test.getEndMillis());

@@ -1,4 +1,4 @@
-package HA.Utilities;
+package SA.Utilities;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
-import HA.Properties.logApp;
+import SA.Properties.logApp;
 
 public class timedate {
 

@@ -1,4 +1,4 @@
-package HA.SeleniumLib;
+package SA.SeleniumLib;
 
 import java.awt.Toolkit;
 import java.io.BufferedWriter;
@@ -41,9 +41,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.*;
 import org.testng.Assert;
 
-import HA.Properties.HATF_properties;
-import HA.Properties.logApp;
-import HA.Utilities.Fetch_PageLocaters;
+import SA.Properties.HATF_properties;
+import SA.Properties.logApp;
+import SA.Utilities.Fetch_PageLocaters;
 
 
 public class Common {
@@ -265,7 +265,7 @@ public class Common {
 
 	public static String Getxml(String datafile, String dataset, String key) throws Exception{
 		String values = null;		
-		values = HA.Utilities.Util.getXmlData(datafile,dataset,key);
+		values = SA.Utilities.Util.getXmlData(datafile,dataset,key);
 		System.out.println(key+" valuesssssssssssss "+values);
 		return values;
 	}
@@ -1252,7 +1252,7 @@ public class Common {
 
 	public static void writeFile(String source){	
 		try{				
-			String fileName = "C:\\hataf\\source\\TestLogs\\runningStatus\\"+((HA.Utilities.timedate.getCurrentTimeStamp()).split("\\_"))[0]+".txt";
+			String fileName = "C:\\hataf\\source\\TestLogs\\runningStatus\\"+((SA.Utilities.timedate.getCurrentTimeStamp()).split("\\_"))[0]+".txt";
 			PrintWriter writeData = new PrintWriter(new BufferedWriter(new FileWriter(fileName, true)));
 			writeData.println(source);
 			writeData.close();
@@ -1506,21 +1506,21 @@ public class Common {
 	}
 
 	public static void switchWindowsAfterClick(String elemfindBY, String elemfindText)throws Exception{
-		String mainWindow = HA.SeleniumLib.Common.dr.getWindowHandle();		
+		String mainWindow = SA.SeleniumLib.Common.dr.getWindowHandle();		
 		logApp.logger.info("mainWindow: "+mainWindow);
 		Set <String> windows = new LinkedHashSet<String>();
 		windows.add(mainWindow);
 		Common.clickElement(elemfindBY, elemfindText);
 		Sync.waitPageLoad();		
-		windows=HA.SeleniumLib.Common.dr.getWindowHandles();
+		windows=SA.SeleniumLib.Common.dr.getWindowHandles();
 		while(windows.size()<=1){
-			windows=HA.SeleniumLib.Common.dr.getWindowHandles();
+			windows=SA.SeleniumLib.Common.dr.getWindowHandles();
 		}
-		HA.SeleniumLib.Common.dr.switchTo().window(mainWindow);	
+		SA.SeleniumLib.Common.dr.switchTo().window(mainWindow);	
 		windows.remove(mainWindow);		
 		for(String id:windows){
 			logApp.logger.info("subWindows: "+id);
-			HA.SeleniumLib.Common.dr.switchTo().window(id);
+			SA.SeleniumLib.Common.dr.switchTo().window(id);
 			logApp.logger.info("switching window to subwindow: "+id);
 		}
 
@@ -1528,19 +1528,19 @@ public class Common {
 
 	public static void switchWindowsSingleClick(String elemfindBY, String elemfindText)throws Exception{
 
-		String mainWindow = HA.SeleniumLib.Common.dr.getWindowHandle();		
+		String mainWindow = SA.SeleniumLib.Common.dr.getWindowHandle();		
 		Set <String> windows = new LinkedHashSet<String>();
 		windows.add(mainWindow);
 		Common.clickElement(elemfindBY, elemfindText);
 		Thread.sleep(8000);
 		Sync.waitPageLoad();		
-		windows=HA.SeleniumLib.Common.dr.getWindowHandles();
-		HA.SeleniumLib.Common.dr.switchTo().window(mainWindow);	
+		windows=SA.SeleniumLib.Common.dr.getWindowHandles();
+		SA.SeleniumLib.Common.dr.switchTo().window(mainWindow);	
 		dr.close();
 		windows.remove(mainWindow);		
 		for(String id:windows){
 			logApp.logger.info("Windows details are:"+id);
-			HA.SeleniumLib.Common.dr.switchTo().window(id);
+			SA.SeleniumLib.Common.dr.switchTo().window(id);
 		}
 
 

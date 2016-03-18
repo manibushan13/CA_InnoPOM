@@ -1,4 +1,4 @@
-package HA.JavaMail;
+package SA.JavaMail;
 
 import java.util.Properties;
 import javax.mail.Message;
@@ -9,7 +9,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import HA.Properties.logApp;
+import SA.Properties.logApp;
 
 public class JavaMail {
 

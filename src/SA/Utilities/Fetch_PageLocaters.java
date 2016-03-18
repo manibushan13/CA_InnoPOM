@@ -1,6 +1,6 @@
-package HA.Utilities;
+package SA.Utilities;
 
-import HA.Component.*;
+import SA.Component.*;
 
 public class Fetch_PageLocaters {
 

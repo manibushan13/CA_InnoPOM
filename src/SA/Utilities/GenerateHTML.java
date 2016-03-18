@@ -1,4 +1,4 @@
-package HA.Utilities;
+package SA.Utilities;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,8 +14,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.CharacterData;
-import HA.Properties.HATF_properties;
-import HA.Properties.logApp;
+import SA.Properties.HATF_properties;
+import SA.Properties.logApp;
 
 
 public class GenerateHTML {

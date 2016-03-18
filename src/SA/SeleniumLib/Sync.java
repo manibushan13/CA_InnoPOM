@@ -1,4 +1,4 @@
-package HA.SeleniumLib;
+package SA.SeleniumLib;
 
 
 import java.util.concurrent.TimeUnit;
@@ -11,8 +11,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import HA.Properties.HATF_properties;
-import HA.Properties.logApp;
+import SA.Properties.HATF_properties;
+import SA.Properties.logApp;
 
 
 public class Sync extends Common {
@@ -444,7 +444,7 @@ public class Sync extends Common {
 
 
 	public static void waitload(){
-		((JavascriptExecutor)HA.SeleniumLib.Common.dr).executeScript("$(document).ready(function(){return true;})");
+		((JavascriptExecutor)SA.SeleniumLib.Common.dr).executeScript("$(document).ready(function(){return true;})");
 	}
 
 	public static void waitPresenceOfElementLocated(String elemfindBY,String elemfindText){

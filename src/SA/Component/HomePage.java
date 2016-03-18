@@ -1,12 +1,12 @@
-package HA.Component;
+package SA.Component;
 
 import java.util.HashMap;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-import HA.Utilities.*;
-import HA.SeleniumLib.*;
+import SA.Utilities.*;
+import SA.SeleniumLib.*;
 
 public class HomePage {
 

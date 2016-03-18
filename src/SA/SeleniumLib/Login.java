@@ -1,9 +1,9 @@
-package HA.SeleniumLib;
+package SA.SeleniumLib;
 
-import HA.SeleniumLib.Sync;
-import HA.Properties.HATF_properties;
-import HA.Properties.logApp;
-import HA.SeleniumLib.Common;
+import SA.SeleniumLib.Sync;
+import SA.Properties.HATF_properties;
+import SA.Properties.logApp;
+import SA.SeleniumLib.Common;
 
 
 public class Login {

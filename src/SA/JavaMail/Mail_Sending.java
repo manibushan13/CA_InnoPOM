@@ -1,4 +1,4 @@
-package HA.JavaMail;
+package SA.JavaMail;
 
 import java.util.Properties;
 import javax.activation.DataHandler;
@@ -14,7 +14,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import HA.Properties.logApp;
+import SA.Properties.logApp;
 
 public class Mail_Sending {
 	static String subject="Sample Mail";

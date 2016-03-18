@@ -1,7 +1,7 @@
-package HA.Utilities;
+package SA.Utilities;
 
-import HA.Properties.logApp;
-import HA.SeleniumLib.Common;
+import SA.Properties.logApp;
+import SA.SeleniumLib.Common;
 
 public class MailNG {
 
