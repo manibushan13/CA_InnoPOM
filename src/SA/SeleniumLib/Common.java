@@ -103,7 +103,7 @@ public class Common {
 			//Get Chrome Driver
 			System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir") +"/Lib/chromedriver.exe");
 			
-			String downloadFilepath = System.getProperty("user.dir")+"/src/HA/TestData/Reporting/Downloads";
+			String downloadFilepath = System.getProperty("user.dir")+"/src/SA/TestData/Reporting/Downloads";
 
 			//Save Chrome Preferences in Hash Map
 			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();

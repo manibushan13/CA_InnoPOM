@@ -33,7 +33,7 @@ public class Util {
 	{
 		HashMap<String, String> locaterType = new HashMap<String, String>();
 		System.out.println("locaterPage:::::::"+locaterPage);
-		FileInputStream file1 = new FileInputStream(new File(System.getProperty("user.dir")+"\\src\\HA\\TestData\\pom.xls"));   
+		FileInputStream file1 = new FileInputStream(new File(System.getProperty("user.dir")+"\\src\\SA\\TestData\\pom.xls"));   
 		HSSFWorkbook workbook = new HSSFWorkbook(file1);  
 		HSSFSheet sheet = workbook.getSheet(locaterPage);  
 
@@ -59,7 +59,7 @@ public class Util {
 	public static HashMap<String, String> locaterText(String locaterPage) throws Exception
 	{
 		HashMap<String, String> locaterText = new HashMap<String, String>();
-		FileInputStream file1 = new FileInputStream(new File(System.getProperty("user.dir")+"\\src\\HA\\TestData\\pom.xls"));   
+		FileInputStream file1 = new FileInputStream(new File(System.getProperty("user.dir")+"\\src\\SA\\TestData\\pom.xls"));   
 		HSSFWorkbook workbook = new HSSFWorkbook(file1);  
 		HSSFSheet sheet = workbook.getSheet(locaterPage);  
 
@@ -109,7 +109,7 @@ public class Util {
 	public static String getXmlData(String datafile,String datasetName,String value1) throws Exception 
 	{
 
-		File file = new File(System.getProperty("user.dir")+"/src/HA/TestData/"+datafile+".xml");
+		File file = new File(System.getProperty("user.dir")+"/src/SA/TestData/"+datafile+".xml");
 		String values = null;		 
 
 		if(file.getName().endsWith(".xml")){

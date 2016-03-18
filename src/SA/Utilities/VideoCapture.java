@@ -55,7 +55,6 @@ public class VideoCapture
 		            .getLocalGraphicsEnvironment()
 		            .getDefaultScreenDevice()
 		            .getDefaultConfiguration();
-//				File mediaFolder = new File("C:\\hataf\\source\\TestLogs\\videos");   
 				File mediaFolder = new File(System.getProperty("user.dir")+"/TestLogs/videos/"); 
 				screenRecorder = new ScreenRecorder(gc,captureArea,
 				       new Format(MediaTypeKey, MediaType.FILE, MimeTypeKey, MIME_AVI),
@@ -110,7 +109,6 @@ public class VideoCapture
 		String videofilepath = null;
 		try
 		{
-//			File mediaFolder=new File("C:\\hataf\\source\\TestLogs\\videos");
 			File mediaFolder=new File(System.getProperty("user.dir")+"/TestLogs/videos/");
 			File[] files = mediaFolder.listFiles();
 		    Arrays.sort(files, new Comparator<Object>()
@@ -121,13 +119,10 @@ public class VideoCapture
 		    	return -1*(new Long(((File)o1).lastModified()).compareTo(new Long(((File)o2).lastModified()))); //for descending order 
 		    }
 		    });
-//		    File oldfile = new File("C:\\hataf\\source\\TestLogs\\videos"+fileSeperator+files[0].getName());
 		    File oldfile = new File(System.getProperty("user.dir")+"/TestLogs/videos/"+fileSeperator+files[0].getName());
 		    File newfile = null;
-//		    if(!new File("C:\\hataf\\source\\TestLogs\\videos"+fileSeperator+sVideoFileName+".avi").exists())
 		    if(!new File(System.getProperty("user.dir")+"/TestLogs/videos/"+fileSeperator+sVideoFileName+".avi").exists())
 		    {
-//		    	newfile = new File("C:\\hataf\\source\\TestLogs\\videos"+fileSeperator+sVideoFileName+".avi");
 		    	newfile = new File(System.getProperty("user.dir")+"/TestLogs/videos/"+fileSeperator+sVideoFileName+".avi");
 		    	System.out.println(newfile.getAbsolutePath());
 		    	videofilepath = newfile.getAbsolutePath();
@@ -137,7 +132,6 @@ public class VideoCapture
 
 		    	Date date = new Date() ;
 		    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss") ;
-//		    	newfile = new File("C:\\hataf\\source\\TestLogs\\videos"+fileSeperator+sVideoFileName+"(1).avi");
 		    	newfile = new File(System.getProperty("user.dir")+"/TestLogs/videos/"+fileSeperator+sVideoFileName+dateFormat.format(date)+".avi");
 		    	System.out.println(newfile.getAbsolutePath());
 		    	videofilepath = newfile.getAbsolutePath();

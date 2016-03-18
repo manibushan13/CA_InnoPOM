@@ -209,7 +209,7 @@ public class MailBody {
 			module = stringList.get(3);
 			String className = stringList.get(4);
 			String[] TCcount = testids.split(",");
-			dynamicRow=dynamicRow.replace("#TestCaseID#",testids).replace("#Priority#",priority).replace("#Module#","POC").replace("#Description#", testdesc).replace("#TestCaseName#", className.split("HA.TestExecute.")[1]);
+			dynamicRow=dynamicRow.replace("#TestCaseID#",testids).replace("#Priority#",priority).replace("#Module#","POC").replace("#Description#", testdesc).replace("#TestCaseName#", className.split("SA.TestExecute.")[1]);
 			System.out.println("Value of temp: "+TCcount);
 			System.out.println(testids);
 			System.out.println(testdesc);
