@@ -22,7 +22,7 @@
 		<layout class="org.apache.log4j.HTMLLayout"></layout>
 	</appender>
 
-	<logger name="HA.Properties" additivity="false">
+	<logger name="SA.Properties" additivity="false">
 		<level value="INFO" />
 		<appender-ref ref="consoleAppender" />
 		<appender-ref ref="fileAppender" />
