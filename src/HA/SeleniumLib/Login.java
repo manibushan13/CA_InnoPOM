@@ -35,7 +35,6 @@ public class Login {
 		if(module.equals("topNav2")||module.equals("topNav3"))
 		{		
 			Common.clickElement("id",module);	
-			Common.navigatePage();
 			logApp.logger.info(module+" module selected successfully");
 
 		}

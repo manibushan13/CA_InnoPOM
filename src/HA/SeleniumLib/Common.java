@@ -101,10 +101,7 @@ public class Common {
 		case "GC":
 
 			//Get Chrome Driver
-			if(os.contains("mac"))
-				System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir") +"/Lib/chromedriver");
-			else
-				System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir") +"/Lib/chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir") +"/Lib/chromedriver.exe");
 			
 			String downloadFilepath = System.getProperty("user.dir")+"/src/HA/TestData/Reporting/Downloads";
 
@@ -138,7 +135,6 @@ public class Common {
 
 			//Start Chrome Driver
 			dr = new ChromeDriver(capabilities);
-
 			logApp.logger.info("Invoked Chrome Driver Success");
 			break;
 
@@ -432,26 +428,6 @@ public class Common {
 		logApp.logger.info("Frame:  "+ frameFindText + " Found successfully");	
 
 	}
-	//**Switching Frame with FrameName */	
-	/**
-	 * switchFrames(frameName): switch to frame by frameName or frameC
-	 * @param frameName -- provide frameName or frameClassName
-	 */
-	//	public static void switchFrames(String frameName){
-	//		try{			
-	//			dr.switchTo().frame(dr.findElement(By.id(frameName)));
-	//			Driver.logger.info("Frame:  "+ frameName + " Found successfully");
-	//		}catch(Exception e){			
-	//			try{				
-	//				dr.switchTo().frame(dr.findElement(By.name(frameName)));			
-	//				Driver.logger.info("FrameName:  "+ frameName + " Found successfully");
-	//			}catch(Exception ce){				
-	//				dr.switchTo().frame(dr.findElement(By.className(frameName)));
-	//				Driver.logger.error("switch frame failed with following exception:\n"+e);
-	//			}
-	//		}
-	//
-	//	}
 
 	/**
 	 * txtVerify: will verify the text and return the result in true or false
@@ -595,7 +571,7 @@ public class Common {
 	public static void clickElement(String elemfindBY,String elemfindText) throws Exception{	
 		WebElement element = findElement(elemfindBY,elemfindText);
 		if(element.isDisplayed()){
-			//			((JavascriptExecutor) dr).executeScript("arguments[0].scrollIntoView(true);", element);
+			//((JavascriptExecutor) dr).executeScript("arguments[0].scrollIntoView(true);", element);
 			((JavascriptExecutor) dr).executeScript("var el=arguments[0]; setTimeout(function() { el.scrollIntoView(true); }, 10);",element);	
 			element.click();	
 		}
@@ -734,28 +710,6 @@ public class Common {
 		return res;
 	}
 
-	/**
-	 * DLRdrop down control 
-	 * @param index
-	 * @param colValue
-	 */
-	public static void DLRdropdown(String index, String colValue)throws Exception{
-
-		if ((index).equals("1")){
-			Sync.waitElementClickable(60, "xpath", "//tr/td[2]/select[@id='strHeader']");
-			Select s1 = new Select(dr.findElement(By.xpath("//tr/td[2]/select[@id='strHeader']")));
-			s1.selectByVisibleText(colValue);
-		}
-		else{
-			Sync.waitElementClickable(60, "xpath", "//tr[" +index+ "]/td[2]/select[@id='strHeader']");
-			Select s1 = new Select(dr.findElement(By.xpath("//tr[" +index+ "]/td[2]/select[@id='strHeader']")));
-			s1.selectByVisibleText(colValue);
-		}
-	}
-
-	public static void DLRdiv()throws Exception{		
-		dr.findElement(By.id("intRowContHeaderInfo")).click();
-	}
 
 	public static void subMenuClick(String popup, String id)throws Exception{	
 		String func = popup+".document.getElementById('"+id+"')";
@@ -790,19 +744,6 @@ public class Common {
 		return s;
 	}
 
-	/**
-	 * wexInput: will input on wex
-	 */
-
-	public static void wexInput()throws Exception{
-		String jsfunc=null;
-		jsfunc="ss.spreadsheet.api.disableScreenUpdate();ss.spreadsheet.api.setValue('C12:C12','500');ss.spreadsheet.api.enableScreenUpdate();";
-		System.out.println(jsfunc);
-		((JavascriptExecutor) dr).executeScript(jsfunc);
-		logApp.logger.info("WEX Input done successfully");
-	}
-
-
 	public static void  Calendar(String textBoxId,String value)throws Exception {
 		if(value.length()==4){
 
@@ -826,7 +767,6 @@ public class Common {
 		//		Common.clickElement("id", imageId);
 		System.out.println("Calendar click on Image pass done");
 		Thread.sleep(2000);
-		Common.navigatePage();	
 	}
 
 
@@ -1011,29 +951,6 @@ public class Common {
 		alert.sendKeys(filepath);
 		alert.accept();
 		logApp.logger.info("file uploaded successfully");
-	}
-
-	/**
-	 * navigatePage: will focus the access on the currency page
-	 */
-	public static void navigatePage()throws Exception{
-		int navigatePage = 0;
-		navigateWhile:
-			while(navigatePage<10){
-				try{
-					switchFrames(0);
-					switchFrames(2);
-					switchFrames(2);
-					break navigateWhile;
-				}catch(Exception e){
-					navigatePage=navigatePage+1;
-					if(navigatePage>=10){
-						Assert.fail();
-						Common.quitProcess();
-					}
-				}
-			}
-		logApp.logger.info("navigatePage successfully");
 	}
 
 	/**
@@ -1270,7 +1187,6 @@ public class Common {
 		logApp.logger.info("Successfully loaded");
 	}
 	public static void closeNotification() throws Exception {
-		Common.navigatePage();
 		Common.switchFrames(0);
 		Common.switchFrames(1);
 		if(dr.findElement(By.xpath("//div/table/tbody/tr/td")).isDisplayed()){
@@ -1291,7 +1207,6 @@ public class Common {
 		Common.textBoxInput("className", "excelText", selectOption);
 		Thread.sleep(5000);
 		Common.clickElement("id", "btnSave");
-		Common.navigatePage();
 		Common.switchFrames("id","Listctrl");
 	}
 
@@ -1299,30 +1214,6 @@ public class Common {
 		findElement(elemfindBY, elemfindText).sendKeys(Keys.TAB);
 	}
 
-	public static void DLRnotification(String textToVerify) throws Exception{
-		Boolean ss=false;
-		int i=0;
-		while(ss==false){
-			Common.switchFrames(0);
-			Common.switchFrames(1);
-			Sync.wait.pollingEvery(1, TimeUnit.SECONDS);
-			String actuaText=Common.findElement("xpath","//div/table/tbody/tr/td").getText();
-			System.out.println("Expected Text: "+textToVerify);
-			System.out.println("Actual Text: "+actuaText);
-			if(((((actuaText).length())>=1)&&(!(actuaText).equals(textToVerify)))||i==2000){	
-				logApp.logger.info("Actual Text:::::: "+actuaText);
-				logApp.logger.info("Expected Tex::::: "+textToVerify);
-				clickElement("id", "mfClose");
-				ss=true;
-				logApp.logger.error("Notification Message not correct");
-				break;
-			}
-			else{
-				System.out.println("iiiiiiii: "+(i++));
-				i=i+1;
-			}
-		}
-	}
 
 
 	public static void boxFileNotification(String textToVerify) throws Exception {
@@ -1350,19 +1241,6 @@ public class Common {
 		}
 	}
 
-	public static void DefaultsDLRDropDown(String index, String colValue) throws Exception {
-		if ((index).equals("1")){
-			Sync.waitElementClickable(60, "xpath", "//tr/td[5]/select[@name='strSourceAccount']");
-			Select s1 = new Select(dr.findElement(By.xpath("//tr/td[5]/select[@name='strSourceAccount']")));
-			s1.selectByVisibleText(colValue);
-		}else{
-			Sync.waitElementClickable(60, "xpath", "//tr["+index+"]/td[5]/select[starts-with(@name,'strSource')]");
-			Select s1 = new Select(dr.findElement(By.xpath("//tr["+index+"]/td[5]/select[starts-with(@name,'strSource')]")));
-			s1.selectByVisibleText(colValue);
-		}
-
-	}
-
 	public static int windowCounts(){
 		Set <String> ids=dr.getWindowHandles();	
 		return ids.size();
@@ -1370,11 +1248,6 @@ public class Common {
 
 	public static String GetBaseURL(){
 		return _properties.getProperty(HATF_properties.BASEURL);
-	}
-
-	public static void deletehtmlXGridRow(String controlType, String gridName, int rowIndex) throws Exception{
-		((JavascriptExecutor) dr).executeScript(" var gridObj=" + gridName +";"
-				+ " gridObj.grid.deleteRow("+ rowIndex + ");" );
 	}
 
 	public static void writeFile(String source){	
@@ -1597,43 +1470,6 @@ public class Common {
 		}
 	}
 
-	public static void waitForOverlaydisable(String elemfindBY,String elemfindText) throws Exception{
-
-
-		System.out.println("waitForOverlaydisable");
-		if(Common.browserName().equalsIgnoreCase("IE")){ 
-			elemfindText = "loadingMsg";
-			boolean visble = (boolean) ((JavascriptExecutor) dr).executeScript("var elem = document.getElementById('"+elemfindText+"');"
-					+ "var result=false;"
-					+ "if($(elem).is(':visible')){"
-					+ "result = true;};else{"
-					+ "result = false;};"
-					+ "return result;"
-					);
-			System.out.println("visblevisblevisblevisblevisblevisblevisble"+visble);
-			if(visble){
-				System.out.println("waitForOverlaydisableifififif");
-				boolean inVisible = false;
-				while(inVisible==false){
-					System.out.println("whilewhilewhilewhilewhilewhilewhile");
-					inVisible = (boolean) ((JavascriptExecutor) dr).executeScript("var elem = document.getElementById('"+elemfindText+"');"
-							+ "var result=false;"
-							+ "if($(elem).is(':visible')==false){"
-							+ "result = true;}else{"
-							+ "result = false;}"
-							+ "return result;");
-				}
-			}
-		}
-		else{
-			System.out.println("Else");
-			Sync.waitElementInvisible(elemfindBY,elemfindText);
-			System.out.println("Else Ended");
-
-		}
-
-
-	}	
 
 	public static void loadUrlinChrome(String url)throws Exception {
 		Thread.sleep(3000);
@@ -1658,14 +1494,10 @@ public class Common {
 		((JavascriptExecutor)dr).executeScript("top.frames[2].frames[2].document.location.href=arguments[1];",frame,  completeurl);
 		Sync.processSync(3000);
 		logApp.logger.info("Frame URL loaded successfully");
-		navigatePage();
 		Sync.waitPresenceOfElementLocated("id", ID);
 		Sync.waitElementVisible("id", ID);
 		logApp.logger.info("Page navigated successfully");
 	}
-
-
-
 
 
 	public static void doubleClick(String elemfindBY, String elemfindText) throws Exception{
@@ -1738,8 +1570,6 @@ public class Common {
 
 	}
 
-
-
 	public static String JavaScriptExecute(String Funv) throws Exception{
 		String val=(String)((JavascriptExecutor)dr).executeScript("var str="+Funv+";return str;").toString();
 		logApp.logger.info("Successfully excuted JS function");
@@ -1767,42 +1597,6 @@ public class Common {
 			e.printStackTrace();
 		}
 	}
-
-	public static String getFlag(){
-		System.out.println("TimeStamp:"+HA.Utilities.timedate.GetDateTimeforHTML());
-		String s ="999";
-		Boolean ss=false;
-		int i=0;
-		while(ss==false){	
-			try{
-				s = (String) ((JavascriptExecutor) dr).executeScript("return flag;").toString();
-			}catch(Exception e){
-				s = "999";
-			}
-
-			if(!s.equals("999")){
-				ss=true;
-				logApp.logger.info(" Page loaded correct");
-
-				break;
-			}else if (i<1000){
-
-				System.out.println("iiiiiiii: "+(i++));
-				i=i+1;
-			}else if(i==500){
-				System.out.println(HA.Utilities.timedate.GetDateTimeforHTML());
-				break;
-			}
-		}
-		return s;
-
-	}
-
-	public static String getSheetCount() {
-
-		String count=((JavascriptExecutor) dr).executeScript("var count=document.all.ssClient.sheets.count; return count;").toString();
-		return count;
-	}	
 
 	public static String getCurrentDate(){
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); 
@@ -1838,34 +1632,6 @@ public class Common {
 		return actualText;
 	}
 
-	public static void CheckNotificationMessageContains(String expectedText) throws Exception{
-		Common.switchFrames(0);
-		Common.switchFrames(1);	
-		//		Sync.waitElementPresent("id", "mfClose");
-		//	Sync.waitElementClickable(20, "id", "mfClose");
-		//		Sync.wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("mfMessage")));
-		String messagetext=Common.findElement("xpath","//div/table/tbody/tr/td").getText();
-		//	if(messagetext.equals(expectedText)){
-		if(messagetext.endsWith(expectedText)){
-			logApp.logger.info("Actual Text:"+messagetext);
-			logApp.logger.info("textToVerify"+expectedText);
-			logApp.logger.info("Verification Passed");
-			//		Common.clickElement("id", "mfClose");	
-			logApp.logger.info("Notification message closed successfully");
-
-
-		}
-		else{
-			logApp.logger.info("Failed to close Notification message");
-			logApp.logger.info("Actual Text:"+messagetext);
-			logApp.logger.info("textToVerify"+expectedText);
-			logApp.logger.error("Not an expected text");
-			Assert.fail();
-			Common.closeAll();
-
-		}
-
-	}
 
 	public static String getSelectedOption(String elemfindBY, String elemfindText) throws Exception
 	{
