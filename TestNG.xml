@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="InnoDemo" parallel="none">
 	<listeners>
-		<listener class-name="HA.Utilities.Listener" />
+		<listener class-name="SA.Utilities.Listener" />
 	</listeners>
 
 
 	<test description="Sample Test" name="NewTest" priority="P1" testID="1234">
 		<classes>
-			<class name="HA.TestExecute.NewTest" />
+			<class name="SA.TestExecute.NewTest" />
 		</classes>
 	</test>
 

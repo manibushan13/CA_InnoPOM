@@ -1,4 +1,4 @@
-<project name="hataf" basedir="." default="sendreport"> 
+<project name="Sel Automation" basedir="." default="sendreport"> 
     <property name="build.dir" value="${basedir}/build"/>
     <property name="jars.dir" value="${basedir}/Lib"/>
     <property name="src.dir" value="${basedir}/src"/>
@@ -49,7 +49,7 @@
 	
 	<target name="sendreport" depends="runTests">
 		<echo message="Preparing.........."/>
-		<java classname= "HA.Utilities.MailNG"  fork="true" classpath="${test.classpath}:${build.dir}">
+		<java classname= "SA.Utilities.MailNG"  fork="true" classpath="${test.classpath}:${build.dir}">
 		</java>
     </target>
 	
