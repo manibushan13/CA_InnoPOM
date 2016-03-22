@@ -355,7 +355,7 @@ public class GenerateHTML {
 			return cd.getData();
 		}
 		return "Mani123";
-	}
+	}	
 
 	public static void testPassPercentage(){
 		String passRate =null;
@@ -402,18 +402,18 @@ public class GenerateHTML {
 			content=content+s;
 
 		} 
-		System.out.println("Mankoo"+content);
+		System.out.println("Mankoo "+content);
 		br.close();
 
 		String Str = new String(content);
 		String arr[]=Str.split("<body>", 2);
-		System.out.println("Mank text: "+arr[1]);
+		System.out.println("Mankoo text: "+arr[1]);
 
 		String rawbody = arr[1];
 		String arrbody[]=rawbody.split("</body>", 2);
 		String body=arrbody[0];
 
-		System.out.println("Mank text: "+body);
+		System.out.println("Mankoo text: "+body);
 		return body;	
 	}
 

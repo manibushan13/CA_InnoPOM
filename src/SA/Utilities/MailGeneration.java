@@ -84,9 +84,9 @@ public class MailGeneration {
 			MailTrigger.to= _properties.getProperty("Exemail");
 			htmlContent= parseHTMLfile(filePath).replace("#Browser#", _properties.getProperty("BROWSER") );
 			fillCommonDetails();
-			//			System.out.println("Module Name:"+HTMLPreparation.module);
+			//System.out.println("Module Name:"+HTMLPreparation.module);
 			String module=GenerateHTML.getTCdetails(0).get(4).split("SA.TestExecute.")[0]+" "+ _properties.getProperty("BROWSER");
-			//           String ModuleName=generateHTMLReport.getTCdetails(0).get(4).split("SA.TestExecute.")[1].split("\\.")[0];
+			//String ModuleName=generateHTMLReport.getTCdetails(0).get(4).split("SA.TestExecute.")[1].split("\\.")[0];
 
 			htmlContent=htmlContent.replace( "#HorizonStatus#","");
 			MailTrigger.subject+=": "+module+" Module Results"+MailBody.generateExecutionHTML();;
