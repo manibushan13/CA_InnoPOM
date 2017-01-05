@@ -1,7 +1,6 @@
 package SA.Utilities;
 
 import java.util.Properties;
-
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -14,13 +13,10 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-
-import SA.Properties.HATF_properties;
 import SA.Properties.logApp;
 
 public  class MailTrigger {
 
-	public static HATF_properties _properties = new HATF_properties();
 	public static String to="",cc="mmulka@innominds.com",subject="",attachmentPath="";
 
 	public static int totalTCcount = 0;

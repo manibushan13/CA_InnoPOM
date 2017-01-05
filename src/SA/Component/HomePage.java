@@ -1,41 +1,49 @@
 package SA.Component;
 
-import java.util.HashMap;
-
+import java.io.IOException;
+import java.util.Map;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
-
+import org.openqa.selenium.WebElement;
 import SA.Utilities.*;
 import SA.SeleniumLib.*;
 
 public class HomePage {
 
-	private WebDriver driver;
-	public static HashMap<String, String> locaterType = new HashMap<String, String>();
-	public static HashMap<String, String> locaterText = new HashMap<String, String>();
+	private WebDriver dr;
+	Map<String, Map<String, String>> homePageOR_Map;
+	ObjectRepoReader homePage;
+	UIElement pageAction;
 
-	public HomePage(WebDriver driver) {
-		this.driver = driver;
-	}
-	
-	public static void getAllLocaters() throws Exception
-	{
-		System.out.println("sizeeeeee :"+locaterType.size());
-		if(locaterType.size()<=0)
-		{
-			locaterType=Util.locaterType("homepage");
-			locaterText=Util.locaterText("homepage");
-		}
+	public HomePage(WebDriver driver) throws IOException {
+
+		this.dr = driver;
+		homePage = new ObjectRepoReader("pom");
+		pageAction = new UIElement(dr);
+		homePageOR_Map = homePage.generateOR("login");
 	}
 
-	public LoginPage appLogout() throws Exception
-	{
-		Common.clickButton(locaterType.get("logoutLink"), locaterText.get("logoutLink"));
-		Common.clickButton(locaterType.get("logout"), locaterText.get("logout"));
+	public void more() throws Exception {
+
+		WebElement moreLink = pageAction.webGetWebElement(homePageOR_Map, "more");
+		Sync1.waitElementPresent(5000, moreLink);
+		UIActions.clickElement(moreLink);
+	}
+
+	public void appLogout() throws Exception {
+		ClickLogoutLink();
+		ClickLogoutButton();
 		Thread.sleep(5000);
-		return PageFactory.initElements(driver, LoginPage.class);
-		
+
 	}
-	
+
+	public void ClickLogoutLink() throws Exception {
+		WebElement logoutLink = pageAction.webGetWebElement(homePageOR_Map, "logoutLink");
+		UIActions.clickElement(logoutLink);
+	}
+
+	public void ClickLogoutButton() throws Exception {
+		WebElement logout = pageAction.webGetWebElement(homePageOR_Map, "logout");
+		UIActions.clickElement(logout);
+	}
 
 }

@@ -7,7 +7,7 @@
 
 	<test description="Sample Test" name="NewTest" priority="P1" testID="1234">
 		<classes>
-			<class name="SA.TestExecute.NewTest" />
+			<class name="SA.TestExecute.NewTest1" />
 		</classes>
 	</test>
 

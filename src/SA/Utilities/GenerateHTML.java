@@ -7,14 +7,12 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.CharacterData;
-import SA.Properties.HATF_properties;
 import SA.Properties.logApp;
 
 
@@ -29,7 +27,6 @@ public class GenerateHTML {
 	public static int totExe_time=0;
 
 	public static String consol_testPassRate,consol_testPassPercentage;
-	public static HATF_properties _properties = new HATF_properties();
 
 	public static String exception(String exceptionname)
 	{

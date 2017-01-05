@@ -1,47 +1,32 @@
 package SA.Component;
 
-import java.util.HashMap;
+import java.io.IOException;
+import java.util.Map;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.WebElement;
 import SA.SeleniumLib.*;
 import SA.Utilities.*;
 
 public class GooglePage {
 	
-	private WebDriver driver;
-	Common cf=new Common();
-	public static HashMap<String, String> locaterType = new HashMap<String, String>();
-	public static HashMap<String, String> locaterText = new HashMap<String, String>();
+	private WebDriver dr;
+	Map<String, Map<String, String>> webGoogleOR_Map;
+	ObjectRepoReader googlePage;
+	UIElement pageAction;
 
-	public GooglePage(WebDriver driver) {
-		this.driver = driver;
-	}
-	public static void getAllLocaters() throws Exception
-	{
-		System.out.println("sizeeeeee :"+locaterType.size());
-		if(locaterType.size()<=0)
-		{
-			locaterType=Util.locaterType("googlepage");
-			locaterText=Util.locaterText("googlepage");
-		}
-	}
-
-	public static void appLogin(String datafile, String dataset) throws Exception
-	{
-		Common.textEnter(locaterType.get("username"), locaterText.get("username"), Util.getXmlData(datafile, dataset,"username"));
-		Common.clickButton(locaterType.get("nextButton"), locaterText.get("nextButton"));
-		Common.textEnter(locaterType.get("password"), locaterText.get("password"), Util.getXmlData(datafile, dataset,"password"));
-		Common.clickButton(locaterType.get("signIn"), locaterText.get("signIn"));
-	}
-
-	public LoginPage loginClick() throws Exception {
-		Common.clickButton(locaterType.get("loginLink"), locaterText.get("loginLink"));
-		return PageFactory.initElements(driver, LoginPage.class);
+	public GooglePage(WebDriver driver) throws IOException {
+		
+		this.dr = driver;
+		googlePage = new ObjectRepoReader("pom");
+		pageAction = new UIElement(dr);
+		webGoogleOR_Map = googlePage.generateOR("googlepage");
 	}
 	
-	public HomePage more() throws Exception {
-		Common.clickButton(locaterType.get("more"), locaterText.get("more"));
-		return PageFactory.initElements(driver, HomePage.class);
+	public void loginClick() throws Exception {
+
+		WebElement loginLink = pageAction.webGetWebElement(webGoogleOR_Map, "loginLink");
+		Sync1.waitElementPresent(5000, loginLink);
+		UIActions.clickElement(loginLink);
 	}
 	
 

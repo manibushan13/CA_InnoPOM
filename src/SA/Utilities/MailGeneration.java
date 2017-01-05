@@ -3,21 +3,17 @@ package SA.Utilities;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
-
 import org.testng.ITestResult;
-
-import SA.Properties.HATF_properties;
 import SA.Properties.logApp;
 
 public class MailGeneration {
 
-	public static HATF_properties _properties = new HATF_properties();
 	public static String mailTemplatePath=System.getProperty("user.dir")+"/MailTemplates/";
 	public static String htmlContent, htmlreportpath;
 	public static String module;
@@ -71,8 +67,8 @@ public class MailGeneration {
 		case "Start" :
 		{
 			filePath=mailTemplatePath+"ExecutionStartMail.html";
-			MailTrigger.to= _properties.getProperty("Exestartmail");
-			htmlContent= parseHTMLfile(filePath).replace("#Browser#", _properties.getProperty("BROWSER") );
+			MailTrigger.to= PropertyReader.getPropValuesFromConfig("Exestartmail");
+			htmlContent= parseHTMLfile(filePath).replace("#Browser#",PropertyReader.getPropValuesFromConfig("BROWSER") );
 
 			fillCommonDetails();
 			MailBody.generateStartHTML();
@@ -81,11 +77,11 @@ public class MailGeneration {
 		case "ExecutionReport":
 		{
 			filePath=mailTemplatePath+"ExecutionMail.html";
-			MailTrigger.to= _properties.getProperty("Exemail");
-			htmlContent= parseHTMLfile(filePath).replace("#Browser#", _properties.getProperty("BROWSER") );
+			MailTrigger.to= PropertyReader.getPropValuesFromConfig("Exemail");
+			htmlContent= parseHTMLfile(filePath).replace("#Browser#", PropertyReader.getPropValuesFromConfig("BROWSER") );
 			fillCommonDetails();
 			//System.out.println("Module Name:"+HTMLPreparation.module);
-			String module=GenerateHTML.getTCdetails(0).get(4).split("SA.TestExecute.")[0]+" "+ _properties.getProperty("BROWSER");
+			String module=GenerateHTML.getTCdetails(0).get(4).split("SA.TestExecute.")[0]+" "+ PropertyReader.getPropValuesFromConfig("BROWSER");
 			//String ModuleName=generateHTMLReport.getTCdetails(0).get(4).split("SA.TestExecute.")[1].split("\\.")[0];
 
 			htmlContent=htmlContent.replace( "#HorizonStatus#","");
@@ -97,7 +93,7 @@ public class MailGeneration {
 		{
 			filePath=mailTemplatePath+"ExecutionFail.html";
 			MailTrigger.subject="Test case Failed";
-			MailTrigger.to= _properties.getProperty("FailureMail");
+			MailTrigger.to= PropertyReader.getPropValuesFromConfig("FailureMail");
 			htmlContent= parseHTMLfile(filePath);
 			fillCommonDetails();
 			String testDetails = test.getTestClass().toString();
@@ -116,9 +112,9 @@ public class MailGeneration {
 
 
 
-	public static void fillCommonDetails() throws UnknownHostException
+	public static void fillCommonDetails() throws FileNotFoundException, IOException
 	{
-		htmlContent=htmlContent.replace("#URL#",_properties.getProperty("BASEURL")).replace("#OS#",System.getProperty("os.name")).replace("#ExecutionMachine#",InetAddress.getLocalHost().getHostName()).replace("#BuildVersion#","Sample_Build");
+		htmlContent=htmlContent.replace("#URL#",PropertyReader.getPropValuesFromConfig("BASEURL")).replace("#OS#",System.getProperty("os.name")).replace("#ExecutionMachine#",InetAddress.getLocalHost().getHostName()).replace("#BuildVersion#","Sample_Build");
 	}
 
 

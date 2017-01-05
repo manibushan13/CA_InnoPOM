@@ -7,7 +7,6 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import SA.Properties.logApp;
-import SA.SeleniumLib.Common;
 
 
 public class Listener implements  ISuiteListener,ITestListener {
@@ -18,16 +17,16 @@ public class Listener implements  ISuiteListener,ITestListener {
 	@Override
 	public void onStart(ISuite arg0) {
 		try {
-//			logApp.logIntilize();
-			Common.Clean_Automation_Environment();
+			logApp.logIntilize();
+//			Common.Clean_Automation_Environment();
 //			MailTrigger.startmail();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		Util.filecreation();
-		Util.filereadyforwritingdata();
+		ReadXMLData.filecreation();
+		ReadXMLData.filereadyforwritingdata();
 		logApp.logger.info("About to begin executing Suite: " + arg0.getName());
-		Util.filewrite("About to begin executing Suite: " + arg0.getName());
+		ReadXMLData.filewrite("About to begin executing Suite: " + arg0.getName());
 	}
 
 	// This belongs to ISuiteListener and will execute, once the Suite is finished
@@ -39,8 +38,8 @@ public class Listener implements  ISuiteListener,ITestListener {
 			e.printStackTrace();
 		}
 		logApp.logger.info("About to end executing Suite: " + arg0.getName());
-		Util.filewrite("About to end executing Suite: " + arg0.getName());
-		Util.fileclose();
+		ReadXMLData.filewrite("About to end executing Suite: " + arg0.getName());
+		ReadXMLData.fileclose();
 	}
 	
 
@@ -49,7 +48,7 @@ public class Listener implements  ISuiteListener,ITestListener {
 		executionstatus = 0;		
 		VideoCapture.startVideoCapture();
 		logApp.logger.info("About to begin executing Test: " + arg0.getName());
-		Util.filewrite("About to begin executing Test: " + arg0.getName());
+		ReadXMLData.filewrite("About to begin executing Test: " + arg0.getName());
 		tName=arg0.getName();
 	}
 
@@ -57,7 +56,7 @@ public class Listener implements  ISuiteListener,ITestListener {
 	public void onFinish(ITestContext arg0) {		
 
 		logApp.logger.info("About to end executing Test: " + arg0.getName());
-		Util.filewrite("About to end executing Test: " + arg0.getName());
+		ReadXMLData.filewrite("About to end executing Test: " + arg0.getName());
 		String videopath = VideoCapture.stopVideoCapture(arg0.getName());
 		System.out.println("executionstatus : " +executionstatus);
 		if(executionstatus==16)
@@ -83,7 +82,7 @@ public class Listener implements  ISuiteListener,ITestListener {
 		executionstatus = arg0.getStatus();
 		System.out.println("executionstatus : " +executionstatus);
 		logApp.logger.info("Test Skipped: " + arg0.getName());
-		Util.filewrite("Test Skipped: " + arg0.getName());
+		ReadXMLData.filewrite("Test Skipped: " + arg0.getName());
 	}
 
 	@Override
@@ -92,14 +91,14 @@ public class Listener implements  ISuiteListener,ITestListener {
 		executionstatus = arg0.getStatus();
 		System.out.println("executionstatus : " +executionstatus);
 		logApp.logger.info("Test Started: " + arg0.getName());
-		Util.filewrite("Test Started: " + arg0.getName());
+		ReadXMLData.filewrite("Test Started: " + arg0.getName());
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult arg0) {
 
 		logApp.logger.info("Test Passed: " + arg0.getName());
-		Util.filewrite("Test Passed: " + arg0.getName());
+		ReadXMLData.filewrite("Test Passed: " + arg0.getName());
 	}
 
 	@Override
@@ -109,11 +108,11 @@ public class Listener implements  ISuiteListener,ITestListener {
 		logApp.logger.info("Test Failed: " + arg0.getName());
 		System.out.println("......"+tName);
 		try{
-		Common.screenShot(tName);
+//		Common.screenShot(tName);
 		} catch(Exception e){
 			e.printStackTrace();
 		}
-		Util.filewrite("Test Failed: " + arg0.getName());
+		ReadXMLData.filewrite("Test Failed: " + arg0.getName());
 		
 	}
 
